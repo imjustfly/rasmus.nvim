@@ -33,7 +33,7 @@ local set_groups = function()
     NormalNC = { fg = c.fg, bg = cfg.transparent and c.none or c.bg }, -- normal text in non-current windows
     SignColumn = { fg = c.fg, bg = cfg.transparent and c.none or c.bg }, -- column where signs are displayed
     EndOfBuffer = { fg = c.gray03 }, -- ~ lines at the end of a buffer
-    NormalFloat = { fg = c.fg, bg = c.gray02 }, -- normal text and background color for floating windows
+    NormalFloat = { fg = c.fg, bg = c.gray01 }, -- normal text and background color for floating windows
     FloatBorder = { fg = c.blue, bg = c.gray02 },
     ColorColumn = { fg = c.none, bg = c.gray01 }, --  used for the columns set with 'colorcolumn'
     Conceal = { fg = c.gray05 }, -- placeholder characters substituted for concealed text (see 'conceallevel')
@@ -63,10 +63,10 @@ local set_groups = function()
     qfLineNr = { fg = c.blue, bg = c.gray01 },
     Search = { style = "reverse" },
     SpecialKey = { fg = c.gray03 },
-    SpellBad = { fg = c.red, bg = c.none, style = "italic,undercurl" },
-    SpellCap = { fg = c.blue, bg = c.none, style = "italic,undercurl" },
-    SpellLocal = { fg = c.cyan, bg = c.none, style = "italic,undercurl" },
-    SpellRare = { fg = c.cyan, bg = c.none, style = "italic,undercurl" },
+    SpellBad = { fg = c.red, bg = c.none, style = "italic" },
+    SpellCap = { fg = c.none, bg = c.none, style = "italic" },
+    SpellLocal = { fg = c.cyan, bg = c.none, style = "italic" },
+    SpellRare = { fg = c.cyan, bg = c.none, style = "italic" },
     StatusLine = { fg = c.gray07, bg = c.gray01 },
     StatusLineNC = { fg = c.gray06, bg = c.gray01 },
     StatusLineTerm = { fg = c.gray07, bg = c.gray01 },
@@ -93,24 +93,24 @@ local set_groups = function()
     healthSuccess = { fg = c.green },
     healthWarning = { fg = c.yellow },
     --common
-    Type = { fg = c.cyan }, -- int, long, char, etc.
-    StorageClass = { fg = c.cyan }, -- static, register, volatile, etc.
-    Structure = { fg = c.fg }, -- struct, union, enum, etc.
-    Constant = { fg = c.cyan }, -- any constant
+    Type = { fg = c.blue }, -- int, long, char, etc.
+    StorageClass = { fg = c.bright_blue }, -- static, register, volatile, etc.
+    Structure = { fg = c.blue }, -- struct, union, enum, etc.
+    Constant = { fg = c.blue, style = "bold" }, -- any constant
     Comment = { fg = c.gray05, bg = c.none, style = cfg.comment_style }, -- italic comments
-    Conditional = { fg = c.blue, bg = c.none, style = cfg.keyword_style }, -- italic if, then, else, endif, switch, etc.
-    Keyword = { fg = c.blue, bg = c.none, style = cfg.keyword_style }, -- italic for, do, while, etc.
+    Conditional = { fg = c.bright_blue, bg = c.none, style = cfg.keyword_style }, -- italic if, then, else, endif, switch, etc.
+    Keyword = { fg = c.bright_blue, bg = c.none, style = cfg.keyword_style }, -- italic for, do, while, etc.
     Repeat = { fg = c.blue, bg = c.none, style = cfg.keyword_style }, -- italic any other keyword
     Boolean = { fg = c.cyan, bg = c.none, style = cfg.boolean_style }, -- true , false
-    Function = { fg = c.blue, bg = c.none, style = cfg.function_style },
-    Identifier = { fg = c.blue, bg = c.none }, -- any variable name
+    Function = { fg = c.bright_white, bg = c.none, style = cfg.function_style },
+    Identifier = { fg = c.white, bg = c.none }, -- any variable name
     String = { fg = c.cyan, bg = c.none }, -- Any string
     Character = { fg = c.cyan }, -- any character constant: 'c', '\n'
     Number = { fg = c.cyan }, -- a number constant: 5
     Float = { fg = c.cyan }, -- a floating point constant: 2.3e10
     Statement = { fg = c.blue }, -- any statement
     Label = { fg = c.cyan }, -- case, default, etc.
-    Operator = { fg = c.yellow }, -- sizeof", "+", "*", etc.
+    Operator = { fg = c.yellow, style = "bold" }, -- "sizeof", "+", "*", etc.
     Exception = { fg = c.yellow }, -- try, catch, throw
     PreProc = { fg = c.red }, -- generic Preprocessor
     Include = { fg = c.blue }, -- preprocessor #include
@@ -118,7 +118,7 @@ local set_groups = function()
     Macro = { fg = c.blue }, -- same as Define
     Typedef = { fg = c.cyan }, -- A typedef
     PreCondit = { fg = c.cyan }, -- preprocessor #if, #else, #endif, etc.
-    Special = { fg = c.blue, bg = c.none, "italic" }, -- any special symbol
+    Special = { fg = c.bright_white, bg = c.none, "italic" }, -- any special symbol
     SpecialChar = { fg = c.cyan }, -- special character in a constant
     Tag = { fg = c.yellow }, -- you can use CTRL-] on this
     Delimiter = { fg = c.gray07 }, -- character that needs attention like , or .
@@ -126,7 +126,7 @@ local set_groups = function()
     Debug = { fg = c.red }, -- debugging statements
     Underlined = { fg = c.cyan, bg = c.none, style = "underline" }, -- text that stands out, HTML links
     Ignore = { fg = c.gray07 }, -- left blank, hidden
-    Error = { fg = c.red, bg = c.none, style = "bold,underline" }, -- any erroneous construct
+    Error = { fg = c.red, bg = c.none, style = "bold" }, -- any erroneous construct
     Todo = { fg = c.cyan, bg = c.none, style = "bold,italic" }, -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
     -- HTML
     htmlArg = { fg = c.fg, style = "italic" },
