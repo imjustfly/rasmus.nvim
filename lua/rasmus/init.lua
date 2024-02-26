@@ -7,6 +7,42 @@ local M = {}
 local set_groups = function()
   local groups = {
     -- Base
+    --common
+    Type = { fg = c.bright_white }, -- int, long, char, etc.
+    StorageClass = { fg = c.blue }, -- static, register, volatile, etc.
+    Structure = { fg = c.white }, -- struct, union, enum, etc.
+    Constant = { fg = c.white, style = "bold" }, -- any constant
+    Comment = { fg = c.gray05, bg = c.none, style = cfg.comment_style }, -- italic comments
+    Conditional = { fg = c.purple, bg = c.none, style = cfg.keyword_style }, -- italic if, then, else, endif, switch, etc.
+    Keyword = { fg = c.purple, bg = c.none, style = cfg.keyword_style }, -- italic for, do, while, etc.
+    Repeat = { fg = c.purple, bg = c.none, style = cfg.keyword_style }, -- italic any other keyword
+    Boolean = { fg = c.blue, bg = c.none, style = "bold" }, -- true , false
+    Function = { fg = c.white, bg = c.none, style = cfg.function_style },
+    Identifier = { fg = c.gray08, bg = c.none }, -- any variable name
+    String = { fg = c.gray07, bg = c.none }, -- Any string
+    Character = { fg = c.cyan }, -- any character constant: 'c', '\n'
+    Number = { fg = c.blue }, -- a number constant: 5
+    Float = { fg = c.blue }, -- a floating point constant: 2.3e10
+    Statement = { fg = c.purple }, -- any statement
+    Label = { fg = c.cyan }, -- case, default, etc.
+    Operator = { fg = c.cyan, style = "bold" }, -- "sizeof", "+", "*", etc.
+    Exception = { fg = c.purple }, -- try, catch, throw
+    PreProc = { fg = c.red }, -- generic Preprocessor
+    Include = { fg = c.blue }, -- preprocessor #include
+    Define = { fg = c.cyan }, -- preprocessor #define
+    Macro = { fg = c.blue }, -- same as Define
+    Typedef = { fg = c.cyan }, -- A typedef
+    PreCondit = { fg = c.cyan }, -- preprocessor #if, #else, #endif, etc.
+    Special = { fg = c.white, bg = c.none, "italic" }, -- any special symbol
+    SpecialChar = { fg = c.cyan }, -- special character in a constant
+    Tag = { fg = c.yellow }, -- you can use CTRL-] on this
+    Delimiter = { fg = c.gray08 }, -- character that needs attention like , or .
+    SpecialComment = { fg = c.blue }, -- special things inside a comment
+    Debug = { fg = c.red }, -- debugging statements
+    Underlined = { fg = c.cyan, bg = c.none, style = "underline" }, -- text that stands out, HTML links
+    Ignore = { fg = c.gray08 }, -- left blank, hidden
+    Error = { fg = c.red, bg = c.none, style = "bold" }, -- any erroneous construct
+    Todo = { fg = c.cyan, bg = c.none, style = "bold,italic" }, -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
     -- Editor highlight groups
     Normal = { fg = c.fg, bg = cfg.transparent and c.none or c.bg }, -- normal text and background color
     NormalNC = { fg = c.fg, bg = cfg.transparent and c.none or c.bg }, -- normal text in non-current windows
@@ -19,21 +55,21 @@ local set_groups = function()
     Cursor = { fg = c.cyan, bg = c.none, style = "reverse" }, -- the character under the cursor
     CursorIM = { fg = c.cyan, bg = c.none, style = "reverse" }, -- like Cursor, but used when in IME mode
     Directory = { fg = c.blue, bg = c.none, style = "bold" }, -- directory names (and other special names in listings)
-    DiffAdd = { fg = c.bright_green, bg = c.none, style = "reverse" }, -- diff mode: Added line
-    DiffChange = { fg = c.bright_blue, bg = c.none, style = "reverse" }, --  diff mode: Changed line
-    DiffDelete = { fg = c.bright_red, bg = c.none, style = "reverse" }, -- diff mode: Deleted line
+    DiffAdd = { fg = c.green, bg = c.none, style = "reverse" }, -- diff mode: Added line
+    DiffChange = { fg = c.blue, bg = c.none, style = "reverse" }, --  diff mode: Changed line
+    DiffDelete = { fg = c.red, bg = c.none, style = "reverse" }, -- diff mode: Deleted line
     DiffText = { fg = c.fg, bg = c.none, style = "reverse" }, -- diff mode: Changed text within a changed line
     ErrorMsg = { fg = c.red }, -- error messages
     Folded = { fg = c.gray05, bg = c.none, style = "italic" },
     FoldColumn = { fg = c.blue },
     IncSearch = { style = "reverse" },
     LineNr = { fg = c.gray05 },
-    CursorLineNr = { fg = c.gray07 },
+    CursorLineNr = { fg = c.gray08 },
     MatchParen = { fg = c.yellow, style = "bold" },
     ModeMsg = { fg = c.cyan, style = "bold" },
     MoreMsg = { fg = c.cyan, style = "bold" },
     NonText = { fg = c.gray03 },
-    Pmenu = { fg = c.gray07, bg = c.gray02 },
+    Pmenu = { fg = c.gray08, bg = c.gray02 },
     PmenuSel = { fg = c.bg, bg = c.gray06 },
     PmenuSbar = { fg = c.fg, bg = c.gray02 },
     PmenuThumb = { fg = c.fg, bg = c.gray05 },
@@ -46,12 +82,12 @@ local set_groups = function()
     SpellCap = { fg = c.none, bg = c.none, style = "italic" },
     SpellLocal = { fg = c.cyan, bg = c.none, style = "italic" },
     SpellRare = { fg = c.cyan, bg = c.none, style = "italic" },
-    StatusLine = { fg = c.gray07, bg = c.gray01 },
+    StatusLine = { fg = c.gray08, bg = c.gray01 },
     StatusLineNC = { fg = c.gray06, bg = c.gray01 },
-    StatusLineTerm = { fg = c.gray07, bg = c.gray01 },
-    StatusLineTermNC = { fg = c.gray07, bg = c.gray01 },
+    StatusLineTerm = { fg = c.gray08, bg = c.gray01 },
+    StatusLineTermNC = { fg = c.gray08, bg = c.gray01 },
     TabLineFill = { fg = c.gray05, bg = c.gray01 },
-    TablineSel = { fg = c.bg, bg = c.gray07 },
+    TablineSel = { fg = c.bg, bg = c.gray08 },
     Tabline = { fg = c.gray05 },
     Title = { fg = c.cyan, bg = c.none, style = "bold" },
     Visual = { fg = c.none, bg = c.gray03 },
@@ -71,42 +107,6 @@ local set_groups = function()
     healthError = { fg = c.red },
     healthSuccess = { fg = c.green },
     healthWarning = { fg = c.yellow },
-    --common
-    Type = { fg = c.blue }, -- int, long, char, etc.
-    StorageClass = { fg = c.purple }, -- static, register, volatile, etc.
-    Structure = { fg = c.blue }, -- struct, union, enum, etc.
-    Constant = { fg = c.blue, style = "bold" }, -- any constant
-    Comment = { fg = c.gray05, bg = c.none, style = cfg.comment_style }, -- italic comments
-    Conditional = { fg = c.purple, bg = c.none, style = cfg.keyword_style }, -- italic if, then, else, endif, switch, etc.
-    Keyword = { fg = c.purple, bg = c.none, style = cfg.keyword_style }, -- italic for, do, while, etc.
-    Repeat = { fg = c.purple, bg = c.none, style = cfg.keyword_style }, -- italic any other keyword
-    Boolean = { fg = c.cyan, bg = c.none, style = cfg.boolean_style }, -- true , false
-    Function = { fg = c.bright_white, bg = c.none, style = cfg.function_style },
-    Identifier = { fg = c.white, bg = c.none }, -- any variable name
-    String = { fg = c.cyan, bg = c.none }, -- Any string
-    Character = { fg = c.cyan }, -- any character constant: 'c', '\n'
-    Number = { fg = c.cyan }, -- a number constant: 5
-    Float = { fg = c.cyan }, -- a floating point constant: 2.3e10
-    Statement = { fg = c.purple }, -- any statement
-    Label = { fg = c.cyan }, -- case, default, etc.
-    Operator = { fg = c.yellow, style = "bold" }, -- "sizeof", "+", "*", etc.
-    Exception = { fg = c.yellow }, -- try, catch, throw
-    PreProc = { fg = c.red }, -- generic Preprocessor
-    Include = { fg = c.blue }, -- preprocessor #include
-    Define = { fg = c.cyan }, -- preprocessor #define
-    Macro = { fg = c.blue }, -- same as Define
-    Typedef = { fg = c.cyan }, -- A typedef
-    PreCondit = { fg = c.cyan }, -- preprocessor #if, #else, #endif, etc.
-    Special = { fg = c.bright_white, bg = c.none, "italic" }, -- any special symbol
-    SpecialChar = { fg = c.cyan }, -- special character in a constant
-    Tag = { fg = c.yellow }, -- you can use CTRL-] on this
-    Delimiter = { fg = c.gray07 }, -- character that needs attention like , or .
-    SpecialComment = { fg = c.blue }, -- special things inside a comment
-    Debug = { fg = c.red }, -- debugging statements
-    Underlined = { fg = c.cyan, bg = c.none, style = "underline" }, -- text that stands out, HTML links
-    Ignore = { fg = c.gray07 }, -- left blank, hidden
-    Error = { fg = c.red, bg = c.none, style = "bold" }, -- any erroneous construct
-    Todo = { fg = c.cyan, bg = c.none, style = "bold,italic" }, -- anything that needs extra attention; mostly the keywords TODO FIXME and XXX
     -- HTML
     htmlArg = { fg = c.fg, style = "italic" },
     htmlBold = { fg = c.fg, bg = c.none, style = "bold" },
@@ -124,30 +124,6 @@ local set_groups = function()
     htmlH3 = { fg = c.blue, style = "bold" },
     htmlH4 = { fg = c.blue, style = "bold" },
     htmlH5 = { fg = c.blue, style = "bold" },
-    -- Markdown
-    markdownH1 = { fg = c.bright_white, style = "bold" },
-    markdownH2 = { fg = c.bright_white, style = "bold" },
-    markdownH3 = { fg = c.bright_white, style = "bold" },
-    markdownH4 = { fg = c.bright_white, style = "bold" },
-    markdownH5 = { fg = c.bright_white, style = "bold" },
-    markdownH6 = { fg = c.bright_white, style = "bold" },
-    markdownHeadingDelimiter = { fg = c.gray05 },
-    markdownHeadingRule = { fg = c.gray05 },
-    markdownId = { fg = c.cyan },
-    markdownIdDeclaration = { fg = c.blue },
-    markdownIdDelimiter = { fg = c.cyan },
-    markdownLinkDelimiter = { fg = c.gray05 },
-    markdownLinkText = { fg = c.bright_white, style = "italic" },
-    markdownListMarker = { fg = c.yellow },
-    markdownOrderedListMarker = { fg = c.yellow },
-    markdownRule = { fg = c.gray05 },
-    markdownUrl = { fg = c.gray06, bg = c.none },
-    markdownBlockquote = { fg = c.gray07 },
-    markdownBold = { fg = c.fg, bg = c.none, style = "bold" },
-    markdownItalic = { fg = c.fg, bg = c.none, style = "italic" },
-    markdownCode = { fg = c.fg, bg = c.gray02 },
-    markdownCodeBlock = { fg = c.fg, bg = c.gray02 },
-    markdownCodeDelimiter = { fg = c.fg, bg = c.gray02 },
     -- Dashboard
     DashboardShortCut = { fg = c.red },
     DashboardHeader = { fg = c.magenta },
@@ -171,29 +147,29 @@ local set_groups = function()
     LspTroubleCount = { fg = c.magenta, bg = c.gray03 },
     LspTroubleNormal = { fg = c.fg, bg = c.bg },
     -- Diff
-    diffAdded = { fg = c.bright_green },
-    diffRemoved = { fg = c.bright_red },
-    diffChanged = { fg = c.bright_blue },
+    diffAdded = { fg = c.green },
+    diffRemoved = { fg = c.red },
+    diffChanged = { fg = c.blue },
     diffOldFile = { fg = c.gray04 },
     diffNewFile = { fg = c.fg },
     diffFile = { fg = c.gray05 },
     diffLine = { fg = c.cyan },
     diffIndexLine = { fg = c.magenta },
     -- GitSigns
-    GitSignsAdd = { fg = c.bright_green }, -- diff mode: Added line |diff.txt|
-    GitSignsAddNr = { fg = c.bright_green }, -- diff mode: Added line |diff.txt|
-    GitSignsAddLn = { fg = c.bright_green }, -- diff mode: Added line |diff.txt|
-    GitSignsChange = { fg = c.bright_yellow }, -- diff mode: Changed line |diff.txt|
-    GitSignsChangeNr = { fg = c.bright_yellow }, -- diff mode: Changed line |diff.txt|
-    GitSignsChangeLn = { fg = c.bright_yellow }, -- diff mode: Changed line |diff.txt|
-    GitSignsDelete = { fg = c.bright_red }, -- diff mode: Deleted line |diff.txt|
-    GitSignsDeleteNr = { fg = c.bright_red }, -- diff mode: Deleted line |diff.txt|
-    GitSignsDeleteLn = { fg = c.bright_red }, -- diff mode: Deleted line |diff.txt|
+    GitSignsAdd = { fg = c.green }, -- diff mode: Added line |diff.txt|
+    GitSignsAddNr = { fg = c.green }, -- diff mode: Added line |diff.txt|
+    GitSignsAddLn = { fg = c.green }, -- diff mode: Added line |diff.txt|
+    GitSignsChange = { fg = c.yellow }, -- diff mode: Changed line |diff.txt|
+    GitSignsChangeNr = { fg = c.yellow }, -- diff mode: Changed line |diff.txt|
+    GitSignsChangeLn = { fg = c.yellow }, -- diff mode: Changed line |diff.txt|
+    GitSignsDelete = { fg = c.red }, -- diff mode: Deleted line |diff.txt|
+    GitSignsDeleteNr = { fg = c.red }, -- diff mode: Deleted line |diff.txt|
+    GitSignsDeleteLn = { fg = c.red }, -- diff mode: Deleted line |diff.txt|
     -- Telescope
     TelescopeSelectionCaret = { fg = c.blue, bg = c.gray01 },
     TelescopeBorder = { fg = c.gray05 },
     TelescopePromptBorder = { fg = c.blue },
-    TelescopeResultsBorder = { fg = c.gray07 },
+    TelescopeResultsBorder = { fg = c.gray08 },
     TelescopePreviewBorder = { fg = c.gray05 },
     TelescopeMatching = { fg = c.yellow },
     TelescopePromptPrefix = { fg = c.blue },
