@@ -124,11 +124,6 @@ local set_groups = function()
     htmlH3 = { fg = c.blue, style = "bold" },
     htmlH4 = { fg = c.blue, style = "bold" },
     htmlH5 = { fg = c.blue, style = "bold" },
-    -- Dashboard
-    DashboardShortCut = { fg = c.red },
-    DashboardHeader = { fg = c.magenta },
-    DashboardCenter = { fg = c.blue },
-    DashboardFooter = { fg = c.green, style = "italic" },
     -- highlight groups for the native LSP client
     LspReferenceText = { fg = c.bg, bg = c.magenta }, -- used for highlighting "text" references
     LspReferenceRead = { fg = c.bg, bg = c.magenta }, -- used for highlighting "read" references
@@ -176,12 +171,6 @@ local set_groups = function()
     -- BufferLine
     BufferLineIndicatorSelected = { fg = c.green },
     BufferLineFill = { bg = c.gray03 },
-    -- Sneak
-    Sneak = { fg = c.bg, bg = c.green },
-    SneakScope = { bg = c.gray04 },
-    -- Indent Blankline
-    IndentBlanklineChar = { fg = c.gray03 },
-    IndentBlanklineContextChar = { fg = c.gray05 },
     -- nvim-cmp
     CmpItemAbbrDeprecated = { fg = c.gray05, style = "strikethrough" },
     CmpItemAbbrMatch = { fg = c.yellow },
